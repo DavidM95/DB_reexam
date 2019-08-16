@@ -76,7 +76,6 @@ public class UserDAO implements IUserDAO {
             prep1.setInt(3,userDTO.getUserID());
             prep1.executeUpdate();
 
-            //Ved ikke om den overskriver den allerede gemte rolle. Skal lige testes.
             for(int i = 0; i < userDTO.getRoleList().size(); i++){
                 prep2.setString(1,userDTO.getRoles(i));
                 prep2.setInt(2, userDTO.getUserID());
