@@ -12,20 +12,20 @@ import java.util.ArrayList;
 public class UserDAO implements IUserDAO {
 
 
-    public void createUser(Connection connection, IUserDTO brugerDTO) {
+    public void createUser(Connection connection, IUserDTO userDTO) {
         try {
             PreparedStatement prep1 = connection.prepareStatement("INSERT INTO Users VALUES (?,?,?);");
             PreparedStatement prep2 = connection.prepareStatement("INSERT INTO Roles VALUES (?,?);");
 
-            prep1.setInt(1,brugerDTO.getUserID());
-            prep1.setString(2,brugerDTO.getUsername());
-            prep1.setBoolean(3,brugerDTO.getAdmin());
+            prep1.setInt(1,userDTO.getUserID());
+            prep1.setString(2,userDTO.getUsername());
+            prep1.setBoolean(3,userDTO.getAdmin());
             prep1.execute();
 
-            prep2.setInt(1,brugerDTO.getUserID());
+            prep2.setInt(1,userDTO.getUserID());
 
-            for(int i = 0; i < brugerDTO.getRoleList().size(); i++){
-                prep2.setString(2, brugerDTO.getRoles(i));
+            for(int i = 0; i < userDTO.getRoleList().size(); i++){
+                prep2.setString(2, userDTO.getRoles(i));
                 prep2.execute();
             }
 
@@ -68,7 +68,7 @@ public class UserDAO implements IUserDAO {
 
     public void updateUser(Connection connection, IUserDTO userDTO) {
         try {
-            PreparedStatement prep1 = connection.prepareStatement("UPDATE Users SET username = ?, admin = ? WHERE user_id = ?;");
+            PreparedStatement prep1 = connection.prepareStatement("UPDATE Users SET username = ?, administrator = ? WHERE user_id = ?;");
             PreparedStatement prep2 = connection.prepareStatement("UPDATE Roles SET role = ? WHERE user_id = ?;");
 
             prep1.setString(1,userDTO.getUsername());
