@@ -14,8 +14,8 @@ public class UserDAO implements IUserDAO {
 
     public void createUser(Connection connection, IUserDTO brugerDTO) {
         try {
-            PreparedStatement prep1 = connection.prepareStatement("INSERT INTO Bruger VALUES (?,?,?);");
-            PreparedStatement prep2 = connection.prepareStatement("INSERT INTO Roller VALUES (?,?);");
+            PreparedStatement prep1 = connection.prepareStatement("INSERT INTO Users VALUES (?,?,?);");
+            PreparedStatement prep2 = connection.prepareStatement("INSERT INTO Roles VALUES (?,?);");
 
             prep1.setInt(1,brugerDTO.getUserID());
             prep1.setString(2,brugerDTO.getUsername());
@@ -35,8 +35,8 @@ public class UserDAO implements IUserDAO {
 
     public UserDTO getUser(Connection connection, int ID) {
         try {
-            PreparedStatement prep1 = connection.prepareStatement("SELECT*FROM Bruger WHERE BrugerID = ?;");
-            PreparedStatement prep2 = connection.prepareStatement("SELECT*FROM Roller WHERE BrugerID = ?;");
+            PreparedStatement prep1 = connection.prepareStatement("SELECT*FROM Users WHERE user_id = ?;");
+            PreparedStatement prep2 = connection.prepareStatement("SELECT*FROM Roles WHERE user_id= ?;");
 
             prep1.setInt(1,ID);
 
@@ -68,8 +68,8 @@ public class UserDAO implements IUserDAO {
 
     public void updateUser(Connection connection, IUserDTO userDTO) {
         try {
-            PreparedStatement prep1 = connection.prepareStatement("UPDATE Bruger SET Brugernavn = ?, Admin = ? WHERE BrugerID = ?;");
-            PreparedStatement prep2 = connection.prepareStatement("UPDATE Roller SET Rolle = ? WHERE BrugerID = ?;");
+            PreparedStatement prep1 = connection.prepareStatement("UPDATE Users SET username = ?, admin = ? WHERE user_id = ?;");
+            PreparedStatement prep2 = connection.prepareStatement("UPDATE Roles SET role = ? WHERE user_id = ?;");
 
             prep1.setString(1,userDTO.getUsername());
             prep1.setBoolean(2,userDTO.getAdmin());
@@ -88,8 +88,8 @@ public class UserDAO implements IUserDAO {
 
     public void deleteUser(Connection connection, int ID) {
         try {
-            PreparedStatement prep1 = connection.prepareStatement("DELETE FROM Bruger WHERE BrugerID = ?;");
-            PreparedStatement prep2 = connection.prepareStatement("DELETE FROM Roller WHERE BrugerID = ?;");
+            PreparedStatement prep1 = connection.prepareStatement("DELETE FROM Users WHERE user_id = ?;");
+            PreparedStatement prep2 = connection.prepareStatement("DELETE FROM Roles WHERE user_id = ?;");
 
             prep2.setInt(1,ID);
             prep2.execute();

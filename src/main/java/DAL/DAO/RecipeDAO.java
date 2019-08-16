@@ -8,7 +8,7 @@ import java.sql.*;
 public class RecipeDAO implements IRecipeDAO {
     public void createRecipe(Connection connection, IRecipeDTO recipeDTO) {
         try {
-            PreparedStatement prep = connection.prepareStatement("INSERT into Opskrift values(?,?,?);");
+            PreparedStatement prep = connection.prepareStatement("INSERT into Recipes values(?,?,?);");
 
 
             prep.setInt(1, recipeDTO.getRecipeID());
@@ -24,7 +24,7 @@ public class RecipeDAO implements IRecipeDAO {
 
     public IRecipeDTO getRecipe(Connection connection, int ID) {
         try {
-            PreparedStatement prep = connection.prepareStatement("SELECT * FROM Ingrediens WHERE IngrediensID = ?;");
+            PreparedStatement prep = connection.prepareStatement("SELECT * FROM Recipes WHERE recipe_id = ?;");
 
             prep.setInt(1, ID);
 
@@ -47,7 +47,7 @@ public class RecipeDAO implements IRecipeDAO {
 
     public void updateRecipe(Connection connection, IRecipeDTO recipeDTO) {
         try {
-            PreparedStatement prep = connection.prepareStatement("UPDATE Opskrift SET OpskriftID = ?, Opskriftnavn = ?, BrugerID = ? WHERE OpskriftID = ?;");
+            PreparedStatement prep = connection.prepareStatement("UPDATE Recipes SET recipe_id = ?, recipe_name = ?, user_id = ? WHERE recipe_id = ?;");
 
             prep.setInt(1, recipeDTO.getRecipeID());
             prep.setString(2, recipeDTO.getRecipeName());
@@ -63,8 +63,8 @@ public class RecipeDAO implements IRecipeDAO {
 
     public void deleteRecipe(Connection connection, int ID) {
         try {
-            PreparedStatement statement = connection.prepareStatement("DELETE from Opskrift WHERE OpskriftID  = ?;");
-            PreparedStatement ingredient = connection.prepareStatement("DELETE FROM Ingrediens WHERE OpskriftID = ?;");
+            PreparedStatement statement = connection.prepareStatement("DELETE from Recipes WHERE recipe_id  = ?;");
+            PreparedStatement ingredient = connection.prepareStatement("DELETE FROM Ingredients WHERE recipe_id = ?;");
 
             statement.setInt(1, ID);
 

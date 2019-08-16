@@ -12,7 +12,7 @@ public class IngredientDAO implements IIngredientDAO {
 
     public void createIngredient(Connection connection, IIngredientDTO ingredientDTO) {
         try {
-            PreparedStatement prep = connection.prepareStatement("INSERT into Ingrediens values(?,?,?,?);");
+            PreparedStatement prep = connection.prepareStatement("INSERT into Ingredients values(?,?,?,?);");
 
             prep.setInt(1, ingredientDTO.getRecipeID());
             prep.setString(2, ingredientDTO.getIngredientName());
@@ -28,7 +28,7 @@ public class IngredientDAO implements IIngredientDAO {
 
     public IIngredientDTO getIngredient(Connection connection, int ID) {
         try {
-            PreparedStatement prep = connection.prepareStatement("SELECT * FROM Ingrediens WHERE IngrediensID = ?;");
+            PreparedStatement prep = connection.prepareStatement("SELECT * FROM Ingredients WHERE Ingredient_id = ?;");
 
             prep.setInt(1, ID);
 
@@ -51,7 +51,7 @@ public class IngredientDAO implements IIngredientDAO {
 
     public void updateIngredient(Connection connection, IIngredientDTO ingredientDTO) {
         try {
-            PreparedStatement prep = connection.prepareStatement("UPDATE Ingrediens SET OpskriftID = ?, Ingrediensnavn = ?, IngrediensID = ?, Mængde = ? WHERE IngrediensID = ?;");
+            PreparedStatement prep = connection.prepareStatement("UPDATE Ingredients SET recipe_id = ?, ingredient_name = ?, ingredient_id = ?, amount = ? WHERE ingredient_id = ?;");
 
             prep.setInt(1, ingredientDTO.getRecipeID());
             prep.setString(2, ingredientDTO.getIngredientName());
@@ -68,7 +68,7 @@ public class IngredientDAO implements IIngredientDAO {
 
     public void deleteIngredient(Connection connection, int ID) {
         try {
-            PreparedStatement prep = connection.prepareStatement("DELETE from Ingrediens WHERE IngrediensID  = ?;");
+            PreparedStatement prep = connection.prepareStatement("DELETE from Ingredients WHERE ingredient_id  = ?;");
 
             prep.setInt(1, ID);
 

@@ -12,7 +12,7 @@ public class RessourceDAO implements IRessourceDAO {
 
     public void createRessource(Connection connection, IRessourceDTO ressourceDTO) {
         try {
-            PreparedStatement prep = connection.prepareStatement("INSERT into Råvare values(?,?,?,?,?);");
+            PreparedStatement prep = connection.prepareStatement("INSERT into Ressources values(?,?,?,?,?);");
 
             prep.setInt(1, ressourceDTO.getProductionID());
             prep.setInt(2, ressourceDTO.getIngredientID());
@@ -29,7 +29,7 @@ public class RessourceDAO implements IRessourceDAO {
 
     public RessourceDTO getRessource(Connection connection, int ID) {
         try {
-            PreparedStatement prep = connection.prepareStatement("SELECT * FROM Råvare WHERE IngrediensID = ?;");
+            PreparedStatement prep = connection.prepareStatement("SELECT * FROM Ressources WHERE ingredient_id = ?;");
 
             prep.setInt(1, ID);
 
@@ -52,7 +52,7 @@ public class RessourceDAO implements IRessourceDAO {
 
     public void updateRessource(Connection connection, IRessourceDTO ressourceDTO) {
         try {
-            PreparedStatement prep = connection.prepareStatement("UPDATE Råvare SET ProduktionsID = ?, IngrediensID = ?, Råvarenavn = ?, Mængde = ?, Genbestilling = ? WHERE IngrediensID = ?;");
+            PreparedStatement prep = connection.prepareStatement("UPDATE Ressources SET production_id = ?, ingredient_id = ?, ressource_name = ?, amount = ?, reorder = ? WHERE ingredient_id = ?;");
 
             prep.setInt(1, ressourceDTO.getProductionID());
             prep.setInt(2, ressourceDTO.getIngredientID());
@@ -70,7 +70,7 @@ public class RessourceDAO implements IRessourceDAO {
 
     public void deleteRessource(Connection connection, int ID) {
         try {
-            PreparedStatement prep = connection.prepareStatement("DELETE from Råvare WHERE IngrediensID  = ?;");
+            PreparedStatement prep = connection.prepareStatement("DELETE from Ressources WHERE ingredient_id  = ?;");
 
             prep.setInt(1, ID);
 
