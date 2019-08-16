@@ -8,11 +8,11 @@ public class RecipeDTO implements IRecipeDTO {
     String recipename;
     int userID;
 
-    public RecipeDTO(int opskriftID, String opskriftnavn, int brugerID){
+    public RecipeDTO(int recipeID, String recipeName, int userID){
 
-        this.recipeID = opskriftID;
-        this.recipename = opskriftnavn;
-        this.userID = brugerID;
+        this.recipeID = recipeID;
+        this.recipename = recipeName;
+        this.userID = userID;
 
     }
 
